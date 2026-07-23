@@ -1,0 +1,229 @@
+---
+import TileDivider from "./TileDivider.astro";
+---
+
+<TileDivider />
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <a href="/" class="footer__logo" aria-label="Guiné Mickaël — Accueil">
+        <span class="footer__logo-g">G</span><span class="footer__logo-uine">uiné</span>
+        <span class="footer__logo-mickael">Mickaël</span>
+        <span class="footer__logo-sarl">SARL</span>
+      </a>
+      <p class="footer__tagline">Carreleur artisan — Neuf & Rénovation</p>
+      <p class="footer__zone">Saint Pierre Montlimart et ses alentours</p>
+    </div>
+
+    <div class="footer__contact">
+      <h3>Contact</h3>
+      <address>
+        <p>21, Avenue du bordage<br />49110 Saint Pierre Montlimart</p>
+        <p>
+          <a href="tel:+33241751631">02 41 75 16 31</a><br />
+          <a href="tel:+33627323030">06 27 32 30 30</a>
+        </p>
+      </address>
+    </div>
+
+    <div class="footer__links">
+      <h3>Navigation</h3>
+      <nav aria-label="Navigation pied de page">
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/realisations">Réalisations</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/a-propos">À propos</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="footer__legal">
+    <p>&copy; {new Date().getFullYear()} SARL Guiné Mickaël — Tous droits réservés</p>
+    <div class="footer__legal-links">
+      <a href="/mentions-legales">Mentions légales</a>
+      <a href="/confidentialite">Politique de confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-slate);
+    color: var(--color-chalk);
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem clamp(1rem, 4vw, 3rem) 3rem;
+  }
+
+  /* Logo footer */
+  .footer__logo {
+    text-decoration: none;
+    color: var(--color-chalk);
+    display: flex;
+    align-items: baseline;
+    gap: 0.15em;
+    margin-bottom: 1rem;
+  }
+
+  .footer__logo-g {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--color-ceramic);
+    text-transform: uppercase;
+  }
+
+  .footer__logo-uine {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .footer__logo-mickael {
+    font-family: var(--font-script);
+    font-size: 1.3rem;
+    color: var(--color-orange);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 0.25em;
+  }
+
+  .footer__logo-sarl {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    opacity: 0.5;
+    text-transform: uppercase;
+    margin-left: 0.3em;
+    align-self: flex-end;
+    margin-bottom: 0.2em;
+  }
+
+  .footer__tagline {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ceramic);
+    margin: 0 0 0.25rem;
+  }
+
+  .footer__zone {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin: 0;
+  }
+
+  /* Contact & liens */
+  .footer__contact h3,
+  .footer__links h3 {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-orange);
+    margin: 0 0 1rem;
+  }
+
+  .footer__contact address {
+    font-style: normal;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    opacity: 0.75;
+  }
+
+  .footer__contact a,
+  .footer__links a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer__contact a:hover,
+  .footer__links a:hover {
+    color: var(--color-ceramic);
+  }
+
+  .footer__links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer__links a {
+    font-size: 0.875rem;
+    opacity: 0.75;
+  }
+
+  /* Barre légale */
+  .footer__legal {
+    border-top: 1px solid rgba(248, 247, 244, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem clamp(1rem, 4vw, 3rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    opacity: 0.5;
+  }
+
+  .footer__legal p {
+    margin: 0;
+  }
+
+  .footer__legal-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer__legal-links a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .footer__legal-links a:hover {
+    opacity: 1;
+    color: var(--color-ceramic);
+  }
+
+  /* Footer grid : 1 colonne mobile → 3 colonnes desktop */
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer__legal {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 769px) {
+    .footer__inner {
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .footer__legal {
+      flex-direction: row;
+      text-align: left;
+      gap: 1rem;
+    }
+  }
+</style>

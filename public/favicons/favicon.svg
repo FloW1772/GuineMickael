@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Favicon provisoire : motif calepinage 2×2 inspiré du logo -->
+  <rect width="64" height="64" fill="#1A1A2E"/>
+  <!-- Carré haut-gauche : bleu céramique -->
+  <polygon points="0,0 32,0 16,16" fill="#2E9FC8"/>
+  <polygon points="32,0 32,32 16,16" fill="#E8731A"/>
+  <polygon points="32,32 0,32 16,16" fill="#7D5538"/>
+  <polygon points="0,32 0,0 16,16" fill="#14627F"/>
+  <!-- Carré haut-droit -->
+  <polygon points="32,0 64,0 48,16" fill="#E8731A"/>
+  <polygon points="64,0 64,32 48,16" fill="#7D5538"/>
+  <polygon points="64,32 32,32 48,16" fill="#14627F"/>
+  <polygon points="32,32 32,0 48,16" fill="#2E9FC8"/>
+  <!-- Carré bas-gauche -->
+  <polygon points="0,32 32,32 16,48" fill="#7D5538"/>
+  <polygon points="32,32 32,64 16,48" fill="#14627F"/>
+  <polygon points="32,64 0,64 16,48" fill="#2E9FC8"/>
+  <polygon points="0,64 0,32 16,48" fill="#E8731A"/>
+  <!-- Carré bas-droit -->
+  <polygon points="32,32 64,32 48,48" fill="#14627F"/>
+  <polygon points="64,32 64,64 48,48" fill="#2E9FC8"/>
+  <polygon points="64,64 32,64 48,48" fill="#E8731A"/>
+  <polygon points="32,64 32,32 48,48" fill="#7D5538"/>
+</svg>

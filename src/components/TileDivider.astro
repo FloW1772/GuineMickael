@@ -1,0 +1,36 @@
+---
+interface Props {
+  flipped?: boolean;
+  color?: "ceramic" | "orange" | "joint";
+}
+const { color = "ceramic" } = Astro.props;
+
+const colorMap = {
+  ceramic: "#2E9FC8",
+  orange:  "#E8731A",
+  joint:   "#7D5538",
+};
+const hex = colorMap[color];
+---
+
+<div class="divider" aria-hidden="true">
+  <span class="divider__line" style={`background:${hex}`}></span>
+</div>
+
+<style>
+  .divider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+  }
+
+  .divider__line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0.25;
+  }
+</style>

@@ -1,0 +1,118 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TileDivider from "../components/TileDivider.astro";
+import GalleryGrid from "../components/GalleryGrid.astro";
+---
+
+<Layout
+  title="Réalisations carrelage"
+  description="Découvrez les réalisations de Guiné Mickaël SARL — carrelage salon, salle de bain, douche italienne à Saint Pierre Montlimart et ses alentours."
+>
+  <div class="page-hero">
+    <div class="page-hero__inner">
+      <p class="page-hero__label">Portfolio</p>
+      <h1 class="page-hero__title">Réalisations</h1>
+      <p class="page-hero__desc">
+        Chaque chantier est unique. Découvrez nos poses en salon et salle de bain,
+        du carrelage traditionnel à la douche à l'italienne.
+      </p>
+    </div>
+  </div>
+
+  <TileDivider />
+
+  <section class="section section--chalk" aria-label="Galerie des réalisations">
+    <div class="section__inner">
+      <GalleryGrid showFilters />
+    </div>
+  </section>
+
+  <TileDivider flipped />
+
+  <section class="section section--slate cta-section">
+    <div class="section__inner cta-inner">
+      <h2 class="cta-title reveal">Votre projet, notre prochaine réalisation.</h2>
+      <a href="/contact#devis" class="cta-btn reveal">Demander un devis gratuit</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--color-slate);
+    padding: calc(72px + 4rem) clamp(1rem, 4vw, 3rem) 4rem;
+  }
+
+  .page-hero__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .page-hero__label {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-ceramic);
+    margin: 0 0 1rem;
+  }
+
+  .page-hero__title {
+    font-size: var(--text-h1);
+    color: var(--color-chalk);
+    margin: 0 0 1rem;
+  }
+
+  .page-hero__desc {
+    font-size: 1rem;
+    color: rgba(248, 247, 244, 0.6);
+    max-width: 480px;
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .section { padding: var(--spacing-section) 0; }
+  .section--chalk { background: var(--color-chalk); }
+  .section--slate { background: var(--color-slate); }
+
+  .section__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+  }
+
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-title {
+    font-size: var(--text-h2);
+    color: var(--color-chalk);
+    margin: 0;
+  }
+
+  .cta-btn {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--color-slate);
+    background: var(--color-chalk);
+    padding: 1rem 2.5rem;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .cta-btn:hover,
+  .cta-btn:focus-visible {
+    background: var(--color-orange);
+    color: var(--color-chalk);
+  }
+</style>

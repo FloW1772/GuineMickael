@@ -1,0 +1,347 @@
+---
+import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
+
+// Vérifie si le logo existe déjà dans les assets
+let logoSrc: ImageMetadata | null = null;
+try {
+  const logos = import.meta.glob<{ default: ImageMetadata }>(
+    "../assets/images/logo/*.{png,svg,jpg,webp}",
+    { eager: true }
+  );
+  const first = Object.values(logos)[0];
+  if (first) logoSrc = first.default;
+} catch {}
+
+const navLinks = [
+  { href: "/realisations", label: "Réalisations" },
+  { href: "/services", label: "Services" },
+  { href: "/a-propos", label: "À propos" },
+  { href: "/contact", label: "Contact" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header" id="header">
+  <a href="/" class="header__logo" aria-label="Guiné Mickaël — Accueil">
+    {logoSrc ? (
+      <Image
+        src={logoSrc}
+        alt="Guiné Mickaël SARL — Carreleur"
+        height={44}
+        class="header__logo-img"
+        loading="eager"
+        fetchpriority="high"
+      />
+    ) : (
+      <>
+        <span class="header__logo-text">
+          <span class="header__logo-g">G</span><span class="header__logo-uine">uiné</span>
+          <span class="header__logo-mickael">Mickaël</span>
+        </span>
+        <span class="header__logo-sarl">SARL</span>
+      </>
+    )}
+  </a>
+
+  <button
+    class="header__burger"
+    id="burger"
+    aria-label="Ouvrir le menu"
+    aria-expanded="false"
+    aria-controls="nav"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="header__nav" id="nav" role="navigation" aria-label="Navigation principale">
+    <ul>
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class:list={["header__nav-link", { "is-active": currentPath.startsWith(href) }]}
+            aria-current={currentPath.startsWith(href) ? "page" : undefined}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <a href="/contact#devis" class="header__cta">Devis gratuit</a>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+    height: 72px;
+    background: var(--color-chalk);
+    border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .header.scrolled {
+    box-shadow: 0 2px 20px rgba(26, 26, 46, 0.1);
+  }
+
+  /* Logo */
+  .header__logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+    mix-blend-mode: multiply; /* fond blanc du JPG devient transparent */
+  }
+
+  .header__logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-slate);
+  }
+
+  .header__logo-text {
+    display: flex;
+    align-items: baseline;
+    gap: 0.15em;
+  }
+
+  .header__logo-g {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--color-ceramic);
+    text-transform: uppercase;
+  }
+
+  .header__logo-uine {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .header__logo-mickael {
+    font-family: var(--font-script);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--color-orange);
+    margin-left: 0.3em;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .header__logo-sarl {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--color-slate);
+    opacity: 0.5;
+    text-transform: uppercase;
+    margin-left: 0.2em;
+    align-self: flex-end;
+    margin-bottom: 0.15em;
+  }
+
+  /* Nav */
+  .header__nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .header__nav-link {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color-slate);
+    opacity: 0.75;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s ease;
+    position: relative;
+  }
+
+  .header__nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-ceramic);
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+  }
+
+  .header__nav-link:hover,
+  .header__nav-link:focus-visible {
+    opacity: 1;
+  }
+
+  .header__nav-link:hover::after,
+  .header__nav-link.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .header__nav-link.is-active {
+    opacity: 1;
+  }
+
+  .header__cta {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: var(--color-chalk);
+    background: var(--color-orange);
+    padding: 0.55rem 1.25rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .header__cta:hover,
+  .header__cta:focus-visible {
+    background: var(--color-slate);
+    transform: translateY(-1px);
+  }
+
+  /* Burger — visible par défaut (mobile) */
+  .header__burger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .header__burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-slate);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  /* Nav — menu plein écran sur mobile */
+  .header__nav {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-chalk);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .header__nav.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .header__nav ul {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .header__nav-link {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    opacity: 1;
+  }
+
+  .header__cta {
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+  }
+
+  /* Desktop : nav horizontale, burger caché */
+  @media (min-width: 769px) {
+    .header__burger {
+      display: none;
+    }
+
+    .header__nav {
+      position: static;
+      flex-direction: row;
+      opacity: 1;
+      pointer-events: auto;
+      background: transparent;
+      gap: 2.5rem;
+    }
+
+    .header__nav ul {
+      flex-direction: row;
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .header__nav-link {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      opacity: 0.75;
+    }
+
+    .header__cta {
+      font-size: 0.85rem;
+      padding: 0.55rem 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  const header = document.getElementById("header")!;
+  const burger = document.getElementById("burger")!;
+  const nav = document.getElementById("nav")!;
+
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 20);
+  }, { passive: true });
+
+  burger.addEventListener("click", () => {
+    const open = nav.classList.toggle("is-open");
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+  });
+
+  // Fermer au clic sur un lien
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("is-open");
+      burger.setAttribute("aria-expanded", "false");
+      burger.setAttribute("aria-label", "Ouvrir le menu");
+    });
+  });
+</script>

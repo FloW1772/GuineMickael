@@ -1,0 +1,53 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # HTTPS strict — 2 ans, incluant sous-domaines, préchargement HSTS
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+    # Empêcher le sniffing de type MIME
+    X-Content-Type-Options = "nosniff"
+
+    # Interdire l'affichage dans des iframes (clickjacking)
+    X-Frame-Options = "DENY"
+
+    # Référent limité à l'origine sur les requêtes cross-origin
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Désactiver caméra, micro, géolocalisation, paiements
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+
+    # Content Security Policy
+    # - default-src : rien par défaut
+    # - script-src : seulement scripts inline du site (Astro génère du JS inline)
+    # - style-src : idem + données inline (variables CSS)
+    # - img-src : images du site + Google Maps (aperçu carte)
+    # - connect-src : Formspree pour le formulaire
+    # - frame-src : Google Maps (chargé au clic)
+    # - font-src : self (polices hébergées localement)
+    Content-Security-Policy = """
+      default-src 'none';
+      script-src 'self' 'unsafe-inline';
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https://maps.googleapis.com https://maps.gstatic.com;
+      connect-src 'self' https://formspree.io;
+      frame-src https://www.google.com;
+      font-src 'self';
+      manifest-src 'self';
+      base-uri 'self';
+      form-action https://formspree.io;
+    """
+
+# Cache long sur les assets avec hash (fingerprint Astro)
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/favicons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

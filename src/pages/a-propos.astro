@@ -1,0 +1,202 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TileDivider from "../components/TileDivider.astro";
+---
+
+<Layout
+  title="À propos — Artisan carreleur"
+  description="Guiné Mickaël, artisan carreleur SARL à Saint Pierre Montlimart. Expérience, garantie décennale, travaux neuf et rénovation."
+>
+  <div class="page-hero">
+    <div class="page-hero__inner">
+      <p class="page-hero__label">L'artisan</p>
+      <h1 class="page-hero__title">À propos</h1>
+    </div>
+  </div>
+
+  <TileDivider />
+
+  <section class="section section--chalk">
+    <div class="section__inner about-grid">
+      <div class="about-text reveal">
+        <h2 class="about-subtitle">Mickaël Guiné,<br />carreleur artisan</h2>
+        <p>
+          SARL Guiné Mickaël intervient sur tous types de chantiers : constructions neuves,
+          rénovations complètes ou partielles, en particulier pour la pose de carrelage sol et mur,
+          faïence, et douche à l'italienne.
+        </p>
+        <p>
+          Basé à Saint Pierre Montlimart (49110), nous intervenons dans les alentours
+          pour des particuliers et des professionnels.
+        </p>
+      </div>
+
+      <aside class="about-guarantees reveal">
+        <h2 class="guarantees-title">Garanties & certifications</h2>
+        <ul class="guarantees-list">
+          {[
+            { title: "Garantie décennale", desc: "Couverture obligatoire sur tous les travaux de pose, conformément aux DTU 52.1 et 52.2." },
+            { title: "SARL", desc: "Société à responsabilité limitée — structure professionnelle et engagements clairs." },
+            { title: "Neuf & rénovation", desc: "Compétences sur toutes typologies de chantiers, du neuf à la dépose-repose complète." },
+          ].map(({ title, desc }) => (
+            <li class="guarantee-item">
+              <h3 class="guarantee-item__title">{title}</h3>
+              <p class="guarantee-item__desc">{desc}</p>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <TileDivider flipped />
+
+  <section class="section section--slate cta-section">
+    <div class="section__inner cta-inner">
+      <h2 class="cta-title reveal">Un projet à réaliser ?</h2>
+      <a href="/contact#devis" class="cta-btn reveal">Demander un devis gratuit</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--color-slate);
+    padding: calc(72px + 4rem) clamp(1rem, 4vw, 3rem) 4rem;
+  }
+
+  .page-hero__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .page-hero__label {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-ceramic);
+    margin: 0 0 1rem;
+  }
+
+  .page-hero__title {
+    font-size: var(--text-h1);
+    color: var(--color-chalk);
+    margin: 0;
+  }
+
+  .section { padding: var(--spacing-section) 0; }
+  .section--chalk { background: var(--color-chalk); }
+  .section--slate { background: var(--color-slate); }
+
+  .section__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (min-width: 769px) {
+    .about-grid {
+      grid-template-columns: 3fr 2fr;
+      gap: 4rem;
+    }
+  }
+
+  .about-subtitle {
+    font-size: var(--text-h2);
+    color: var(--color-slate);
+    margin: 0 0 1.5rem;
+    line-height: 1;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+    color: var(--color-slate);
+    opacity: 0.75;
+    line-height: 1.8;
+    margin: 0 0 1.25rem;
+  }
+
+  .guarantees-title {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-orange);
+    margin: 0 0 1.5rem;
+  }
+
+  .guarantees-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .guarantee-item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(26, 26, 46, 0.1);
+  }
+
+  .guarantee-item__title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-slate);
+    margin: 0 0 0.35rem;
+    text-transform: uppercase;
+  }
+
+  .guarantee-item__desc {
+    font-size: 0.8rem;
+    color: var(--color-slate);
+    opacity: 0.6;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-title {
+    font-size: var(--text-h2);
+    color: var(--color-chalk);
+    margin: 0;
+  }
+
+  .cta-btn {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--color-slate);
+    background: var(--color-chalk);
+    padding: 1rem 2.5rem;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .cta-btn:hover,
+  .cta-btn:focus-visible {
+    background: var(--color-orange);
+    color: var(--color-chalk);
+  }
+</style>

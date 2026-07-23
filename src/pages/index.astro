@@ -1,0 +1,389 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TileDivider from "../components/TileDivider.astro";
+import GalleryGrid from "../components/GalleryGrid.astro";
+---
+
+<Layout
+  title="Carreleur à Saint Pierre Montlimart"
+  description="Guiné Mickaël SARL — Artisan carreleur à Saint Pierre Montlimart et ses alentours. Pose de carrelage, faïence, douche à l'italienne. Neuf & rénovation."
+>
+  <!-- ═══ HERO SPLIT ═══ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__photo">
+      <video
+        class="hero__img"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-label="Réalisations carrelage — Guiné Mickaël SARL"
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__content-inner">
+        <p class="hero__overtitle">Artisan carreleur · Neuf & Rénovation</p>
+        <h1 id="hero-title" class="hero__title">
+          Carrelage<br />posé avec<br />précision.
+        </h1>
+        <p class="hero__location">Saint Pierre Montlimart et ses alentours</p>
+        <a href="/contact#devis" class="hero__cta">
+          → Demander un devis gratuit
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <TileDivider />
+
+  <!-- ═══ APERÇU RÉALISATIONS ═══ -->
+  <section class="section section--chalk" aria-labelledby="real-title">
+    <div class="section__inner">
+      <header class="section__header reveal">
+        <h2 id="real-title" class="section__title">Nos réalisations</h2>
+        <a href="/realisations" class="section__link">Voir tout →</a>
+      </header>
+      <GalleryGrid limit={6} />
+    </div>
+  </section>
+
+  <TileDivider flipped />
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="section section--navy" aria-labelledby="services-title">
+    <div class="section__inner">
+      <h2 id="services-title" class="section__title section__title--light reveal">Nos savoir-faire</h2>
+      <ol class="services-list">
+        {[
+          { n: "01", label: "Carrelage sol & mur", desc: "Pose traditionnelle, diagonale, grands formats." },
+          { n: "02", label: "Douche à l'italienne", desc: "Receveur à carreler, évacuation, étanchéité." },
+          { n: "03", label: "Faïence & rénovation", desc: "Salle de bain, cuisine, dépose & repose." },
+        ].map(({ n, label, desc }) => (
+          <li class="services-item reveal">
+            <span class="services-item__num">{n}</span>
+            <div>
+              <h3 class="services-item__title">{label}</h3>
+              <p class="services-item__desc">{desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <a href="/services" class="services-link reveal">Détail des prestations →</a>
+    </div>
+  </section>
+
+  <TileDivider />
+
+  <!-- ═══ RÉASSURANCE ═══ -->
+  <section class="section section--chalk" aria-labelledby="reassurance-title">
+    <div class="section__inner">
+      <h2 id="reassurance-title" class="sr-only">Pourquoi nous choisir</h2>
+      <ul class="reassurance-list">
+        {[
+          { title: "Garantie décennale", desc: "Couverture obligatoire, travaux conformes aux DTU." },
+          { title: "Artisan local", desc: "Saint Pierre Montlimart & environs — déplacement rapide." },
+          { title: "Neuf & rénovation", desc: "Constructions neuves ou remise à neuf complète." },
+        ].map(({ title, desc }) => (
+          <li class="reassurance-item reveal">
+            <h3 class="reassurance-item__title">{title}</h3>
+            <p class="reassurance-item__desc">{desc}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <TileDivider flipped />
+
+  <!-- ═══ CTA FINAL ═══ -->
+  <section class="section section--slate cta-section" aria-labelledby="cta-title">
+    <div class="section__inner cta-section__inner">
+      <h2 id="cta-title" class="cta-section__title reveal">
+        Prêt à démarrer<br />votre projet ?
+      </h2>
+      <a href="/contact#devis" class="cta-section__btn reveal">Demander un devis gratuit</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ── Hero — mobile first ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: auto;
+    margin-top: 72px;
+  }
+
+  .hero__photo {
+    position: relative;
+    overflow: hidden;
+    height: 55svh;
+  }
+
+  .hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  @media (min-width: 769px) {
+    .hero {
+      grid-template-columns: 60fr 40fr;
+      min-height: 100svh;
+    }
+
+    .hero__photo { height: auto; }
+  }
+
+  .hero__content {
+    background: var(--color-slate);
+    display: flex;
+    align-items: center;
+    padding: 2.5rem clamp(1.25rem, 5vw, 2rem);
+  }
+
+  .hero__content-inner {
+    max-width: 100%;
+  }
+
+  @media (min-width: 769px) {
+    .hero__content { padding: 3rem clamp(2rem, 5vw, 4rem); }
+    .hero__content-inner { max-width: 360px; }
+  }
+
+  .hero__overtitle {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-ceramic);
+    margin: 0 0 1.5rem;
+  }
+
+  .hero__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 0.95;
+    color: var(--color-chalk);
+    margin: 0 0 2rem;
+  }
+
+  .hero__location {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: rgba(248, 247, 244, 0.45);
+    margin: 0 0 2.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hero__cta {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-chalk);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--color-orange);
+    padding-bottom: 0.25rem;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .hero__cta:hover,
+  .hero__cta:focus-visible {
+    color: var(--color-orange);
+  }
+
+
+  /* ── Sections communes ── */
+  .section { padding: var(--spacing-section) 0; }
+  .section--chalk { background: var(--color-chalk); }
+  .section--navy  { background: var(--color-navy); }
+  .section--slate { background: var(--color-slate); }
+
+  .section__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+  }
+
+  .section__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    gap: 1rem;
+  }
+
+  .section__title {
+    font-size: var(--text-h2);
+    color: var(--color-slate);
+    margin: 0 0 2.5rem;
+  }
+
+  .section__title--light { color: var(--color-chalk); }
+
+  .section__link {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ceramic);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .section__link:hover { color: var(--color-navy); }
+
+  /* ── Services ── */
+  .services-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .services-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(248, 247, 244, 0.1);
+  }
+
+  .services-item__num {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--color-orange);
+    flex-shrink: 0;
+    width: 2.5rem;
+    padding-top: 0.1em;
+  }
+
+  .services-item__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-h3);
+    color: var(--color-chalk);
+    margin: 0 0 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .services-item__desc {
+    font-size: 0.875rem;
+    color: rgba(248, 247, 244, 0.6);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .services-link {
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ceramic);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .services-link:hover { color: var(--color-chalk); }
+
+  /* ── Réassurance ── */
+  .reassurance-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 641px) {
+    .reassurance-list { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .reassurance-item {
+    border-top: 3px solid var(--color-ceramic);
+    padding-top: 1.5rem;
+  }
+
+  .reassurance-item__title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--color-slate);
+    margin: 0 0 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .reassurance-item__desc {
+    font-size: 0.875rem;
+    color: var(--color-slate);
+    opacity: 0.65;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+
+  /* ── CTA final ── */
+  .cta-section__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-section__title {
+    font-size: var(--text-h1);
+    color: var(--color-chalk);
+    margin: 0;
+    line-height: 1;
+  }
+
+  .cta-section__btn {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--color-slate);
+    background: var(--color-chalk);
+    padding: 1rem 2.5rem;
+    transition: background 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .cta-section__btn:hover,
+  .cta-section__btn:focus-visible {
+    background: var(--color-orange);
+    color: var(--color-chalk);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>

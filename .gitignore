@@ -1,0 +1,64 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files
+.env
+.env.*.local
+
+# Astro build/cache
+.astro/
+dist/
+.cache/
+public/build/
+
+# Logs
+logs
+*.log
+
+# Editor/OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Misc
+coverage/
+*.local
+build/
+/.parcel-cache/
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+Thumbs.db
+
+# jetbrains setting folder
+.idea/
+
+# Windows
+*.lnk
+
+# Secrets — ne jamais commiter
+.env.local
+.env.*.local

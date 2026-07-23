@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@import "@fontsource/barlow-condensed/400.css";
+@import "@fontsource/barlow-condensed/600.css";
+@import "@fontsource/barlow-condensed/700.css";
+@import "@fontsource/barlow-condensed/800.css";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dancing-script/400.css";
+
+@theme {
+  /* Palette Guiné Mickaël — corrigée depuis le vrai logo */
+  --color-ceramic:   #2E9FC8; /* bleu céramique — carreaux du G */
+  --color-orange:    #E8731A; /* orange pose — swoosh logo */
+  --color-joint:     #7D5538; /* brun joint — carreaux du G */
+  --color-purple:    #4B3DA0; /* violet logo — "Guiné" et "Mickaël" */
+  --color-slate:     #1A1A2E; /* ardoise — fond hero, footer */
+  --color-chalk:     #F8F7F4; /* blanc chaux — fond de carte */
+  --color-navy:      #14627F; /* bleu nuit — "NEUF & RÉNOVATION" */
+
+  /* Typographie */
+  --font-heading:    "Barlow Condensed", sans-serif;
+  --font-body:       "DM Sans", sans-serif;
+  --font-script:     "Dancing Script", cursive;
+
+  /* Tailles de titres */
+  --text-display:    clamp(3rem, 8vw, 7rem);
+  --text-h1:         clamp(2.25rem, 5vw, 4rem);
+  --text-h2:         clamp(1.75rem, 3vw, 2.5rem);
+  --text-h3:         clamp(1.25rem, 2vw, 1.75rem);
+
+  /* Espacement */
+  --spacing-section: clamp(4rem, 8vw, 8rem);
+}
+
+/* Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-chalk);
+  color: var(--color-slate);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Focus visible accessible */
+:focus-visible {
+  outline: 3px solid var(--color-ceramic);
+  outline-offset: 3px;
+}
+
+/* Réduction de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Apparition douce au scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

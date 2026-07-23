@@ -1,0 +1,110 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TileDivider from "../components/TileDivider.astro";
+---
+
+<Layout
+  title="Mentions légales"
+  description="Mentions légales du site guiné-mickael.fr — SARL Guiné Mickaël, carreleur à Saint Pierre Montlimart."
+  noindex
+>
+  <div class="page-hero">
+    <div class="page-hero__inner">
+      <h1 class="page-hero__title">Mentions légales</h1>
+    </div>
+  </div>
+
+  <TileDivider />
+
+  <section class="section section--chalk">
+    <div class="section__inner legal-content">
+
+      <h2>Éditeur du site</h2>
+      <p>
+        <strong>SARL Guiné Mickaël</strong><br />
+        21, Avenue du bordage<br />
+        49110 Saint Pierre Montlimart<br />
+        Tél. : 02 41 75 16 31 — 06 27 32 30 30<br />
+        Email : [à compléter — ne pas afficher en clair]
+      </p>
+      <p>
+        SIRET : [à compléter]<br />
+        N° TVA intracommunautaire : [à compléter si applicable]<br />
+        Assurance décennale : [nom assureur, n° police, zone géographique]
+      </p>
+
+      <h2>Hébergement</h2>
+      <p>
+        Ce site est hébergé par :<br />
+        [Nom de l'hébergeur — Netlify ou Vercel]<br />
+        [Adresse de l'hébergeur]
+      </p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        L'ensemble du contenu de ce site (textes, photographies, logo) est la propriété exclusive
+        de SARL Guiné Mickaël. Toute reproduction, même partielle, est interdite sans autorisation préalable.
+      </p>
+
+      <h2>Limitation de responsabilité</h2>
+      <p>
+        SARL Guiné Mickaël s'efforce d'assurer l'exactitude des informations diffusées sur ce site
+        et se réserve le droit de modifier son contenu à tout moment sans préavis.
+      </p>
+
+      <h2>Données personnelles</h2>
+      <p>
+        Voir notre <a href="/confidentialite">politique de confidentialité</a>.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--color-slate);
+    padding: calc(72px + 3rem) clamp(1rem, 4vw, 3rem) 3rem;
+  }
+
+  .page-hero__inner { max-width: 1200px; margin: 0 auto; }
+
+  .page-hero__title { font-size: var(--text-h1); color: var(--color-chalk); margin: 0; }
+
+  .section { padding: var(--spacing-section) 0; }
+  .section--chalk { background: var(--color-chalk); }
+
+  .section__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+  }
+
+  .legal-content {
+    max-width: 720px;
+  }
+
+  .legal-content h2 {
+    font-size: 1.1rem;
+    color: var(--color-slate);
+    margin: 2.5rem 0 0.75rem;
+    border-left: 3px solid var(--color-ceramic);
+    padding-left: 0.75rem;
+  }
+
+  .legal-content p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--color-slate);
+    opacity: 0.75;
+    margin: 0 0 1rem;
+  }
+
+  .legal-content a {
+    color: var(--color-ceramic);
+    text-decoration: none;
+  }
+
+  .legal-content a:hover { text-decoration: underline; }
+
+  .legal-content strong { color: var(--color-slate); opacity: 1; font-weight: 600; }
+</style>

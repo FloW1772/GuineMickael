@@ -1,0 +1,259 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TileDivider from "../components/TileDivider.astro";
+
+const services = [
+  {
+    num: "01",
+    title: "Carrelage sol & mur",
+    desc: `Pose de carrelage en intérieur sur sol et mur, dans toutes les pièces de la maison.
+    Nous maîtrisons la pose droite, la pose diagonale, les grands formats (60×60, 80×80, 120×60)
+    et les petits formats décoratifs. Préparation du support, ragréage si nécessaire, pose au mortier-colle
+    ou à la colle double encollage selon le format.`,
+    details: ["Salon, séjour, couloir", "Cuisine, arrière-cuisine", "Grands formats et petits carreaux", "Pose droite ou diagonale"],
+  },
+  {
+    num: "02",
+    title: "Douche à l'italienne",
+    desc: `Création ou rénovation de douche à l'italienne : receveur à carreler, niche intégrée,
+    caniveau ou bonde de sol. Étanchéité sous carrelage (SPEC, membrane d'étanchéité liquide),
+    pente de sol parfaitement calibrée. Un savoir-faire technique qui demande de la précision
+    à chaque étape pour éviter les infiltrations.`,
+    details: ["Receveur à carreler", "Niche murale encastrée", "Étanchéité SPEC", "Bonde ou caniveau de sol"],
+  },
+  {
+    num: "03",
+    title: "Faïence",
+    desc: `Pose de faïence murale en salle de bain, cuisine, WC. Choix du format, du joint et
+    de la disposition (à joints droits, décalés, en chevron) en accord avec vos souhaits.
+    Découpe précise autour des arrivées d'eau et des prises, finitions soignées en angle et en périphérie.`,
+    details: ["Salle de bain", "Crédence cuisine", "WC", "Angles et finitions soignés"],
+  },
+  {
+    num: "04",
+    title: "Rénovation",
+    desc: `Dépose de l'ancien revêtement, préparation du support, et repose d'un nouveau carrelage.
+    Nous intervenons en rénovation partielle (remplacement de carreaux cassés ou décollés)
+    ou en rénovation complète. Diagnostic préalable gratuit pour évaluer l'état du support.`,
+    details: ["Dépose & repose complète", "Remplacement partiel", "Diagnostic du support", "Neuf ou rénovation"],
+  },
+];
+---
+
+<Layout
+  title="Services — Carrelage, faïence, douche italienne"
+  description="Guiné Mickaël SARL : pose de carrelage sol & mur, douche à l'italienne, faïence, rénovation. Artisan qualifié à Saint Pierre Montlimart."
+>
+  <div class="page-hero">
+    <div class="page-hero__inner">
+      <p class="page-hero__label">Prestations</p>
+      <h1 class="page-hero__title">Nos services</h1>
+      <p class="page-hero__desc">
+        De la pose neuve à la rénovation, chaque intervention est réalisée dans les règles de l'art,
+        avec des matériaux et des techniques adaptés à votre projet.
+      </p>
+    </div>
+  </div>
+
+  <TileDivider />
+
+  <section class="section section--chalk">
+    <div class="section__inner">
+      <ol class="services-list">
+        {services.map(({ num, title, desc, details }) => (
+          <li class="service-card reveal">
+            <div class="service-card__header">
+              <span class="service-card__num">{num}</span>
+              <h2 class="service-card__title">{title}</h2>
+            </div>
+            <div class="service-card__body">
+              <p class="service-card__desc">{desc}</p>
+              <ul class="service-card__details">
+                {details.map((d) => (
+                  <li>{d}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <TileDivider flipped />
+
+  <section class="section section--navy zone-section">
+    <div class="section__inner">
+      <h2 class="zone-title reveal">Zone d'intervention</h2>
+      <p class="zone-desc reveal">
+        Nous intervenons principalement à <strong>Saint Pierre Montlimart</strong> et dans ses alentours
+        (Maine-et-Loire). N'hésitez pas à nous contacter pour savoir si nous pouvons intervenir chez vous.
+      </p>
+      <a href="/contact#devis" class="zone-cta reveal">Demander un devis →</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--color-slate);
+    padding: calc(72px + 4rem) clamp(1rem, 4vw, 3rem) 4rem;
+  }
+
+  .page-hero__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .page-hero__label {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-ceramic);
+    margin: 0 0 1rem;
+  }
+
+  .page-hero__title {
+    font-size: var(--text-h1);
+    color: var(--color-chalk);
+    margin: 0 0 1rem;
+  }
+
+  .page-hero__desc {
+    font-size: 1rem;
+    color: rgba(248, 247, 244, 0.6);
+    max-width: 520px;
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .section { padding: var(--spacing-section) 0; }
+  .section--chalk { background: var(--color-chalk); }
+  .section--navy  { background: var(--color-navy); }
+
+  .section__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+  }
+
+  /* Services list */
+  .services-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .service-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(26, 26, 46, 0.1);
+    align-items: start;
+  }
+
+  @media (min-width: 641px) {
+    .service-card {
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+    }
+  }
+
+  .service-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .service-card__num {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-orange);
+    letter-spacing: 0.1em;
+  }
+
+  .service-card__title {
+    font-size: var(--text-h2);
+    color: var(--color-slate);
+    margin: 0;
+    line-height: 1;
+  }
+
+  .service-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .service-card__desc {
+    font-size: 0.95rem;
+    color: var(--color-slate);
+    opacity: 0.75;
+    margin: 0;
+    line-height: 1.75;
+  }
+
+  .service-card__details {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .service-card__details li {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-navy);
+    border: 1px solid var(--color-navy);
+    padding: 0.3rem 0.75rem;
+    opacity: 0.7;
+  }
+
+
+  /* Zone */
+  .zone-section { padding: var(--spacing-section) 0; }
+
+  .zone-title {
+    font-size: var(--text-h2);
+    color: var(--color-chalk);
+    margin: 0 0 1.25rem;
+  }
+
+  .zone-desc {
+    font-size: 1rem;
+    color: rgba(248, 247, 244, 0.7);
+    max-width: 560px;
+    line-height: 1.75;
+    margin: 0 0 2rem;
+  }
+
+  .zone-desc strong {
+    color: var(--color-chalk);
+    font-weight: 600;
+  }
+
+  .zone-cta {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ceramic);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .zone-cta:hover { color: var(--color-chalk); }
+</style>
